@@ -22,5 +22,5 @@ after_success:
   - rm -rf build/
   - git add --all
   - git commit -m"auto deploy"
-  - git remote add origin-pages https://${github_token}@github.com/YuiZhou/noah-vision.git > /dev/null 2>&1
+  - git remote add origin-pages https://${github_token}@github.com/YuiZhou/noah.git > /dev/null 2>&1
   - git push -f --quiet --set-upstream origin-pages gh-pages

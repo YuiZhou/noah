@@ -12,6 +12,7 @@
   "devDependencies": {
     "react-scripts": "1.0.10"
   },
+  "homepage": ".",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

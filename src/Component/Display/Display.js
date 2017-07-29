@@ -20,7 +20,7 @@ class Display extends Component {
 
     getAutoResponsiveProps() {
         const { bodyWidth } = this.state;
-        var clientWidth = bodyWidth > 768 ? bodyWidth * 0.9 : bodyWidth - 20;
+        var clientWidth = bodyWidth > 768 ? bodyWidth * 0.95 : bodyWidth - 20;
         return {
             itemMargin: 15,
             containerWidth: clientWidth,
@@ -60,8 +60,8 @@ class Display extends Component {
 
     render() {
         const { images } = this.props;
-        const { isOpen, options } = this.state;
-        const fixWidth = 235;
+        const { bodyWidth, isOpen, options } = this.state;
+        const fixWidth = bodyWidth > 768 ? 235 : 165;
         return (
             <div>
             <AutoResponsive ref="container" {...this.getAutoResponsiveProps() }>

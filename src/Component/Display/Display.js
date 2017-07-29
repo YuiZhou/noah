@@ -46,6 +46,7 @@ class Display extends Component {
     }
 
     openSwipe(index) {
+        console.log(index);
         this.setState(function() {
             return {
                 isOpen: true,
@@ -71,7 +72,7 @@ class Display extends Component {
                             width: fixWidth,
                             height: fixWidth * x.h / x.w
                         }
-                        return <div className="item" style={itemStyle} key={i}><img src={ x.thumb } alt={x.discribe} onClick={this.openSwipe.bind(i)}/></div>;
+                        return <div className="item" style={itemStyle} key={i}><img src={ x.thumb } alt={x.discribe} onClick={this.openSwipe.bind(this, i)}/></div>;
                     }, this)
                 }
             </AutoResponsive>

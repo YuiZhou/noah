@@ -1,9 +1,10 @@
 var images = require('./images.json');
+images = resolveSrc(images);
 
 function getImages(index) {
   index = index || 'all';
   if (index === 'all') {
-    return resolveSrc(images);
+    return images;
   }
 
   var select = [];
@@ -11,7 +12,7 @@ function getImages(index) {
     if (images[i].category.indexOf(index) < 0) {continue;}
     select.push(images[i]);
   }
-  return resolveSrc(select);
+  return select;
 }
 
 function resolveSrc(images) {

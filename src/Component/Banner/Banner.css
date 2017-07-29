@@ -2,6 +2,7 @@
   display: inline-block;
   float: none;
   vertical-align: top;
+  text-align: center;
 }
 
 .tagIcon {
@@ -12,11 +13,13 @@
   text-align: center;
   margin: 10px 25px;
 }
+
 .nav>li>a {
     color: #b5b5b5;
     font-size: 1.3em;
     padding: 0;
     margin: 4px 2px;
+    font-weight: bold;
 }
 
 .nav>li>a:focus, .nav>li>a:hover {
@@ -32,4 +35,10 @@
 .nav-pills>li.active {
     border-bottom: 2px solid;
     border-bottom-color: #d94f5c;
+}
+
+@media(max-width: 375px) {
+    .nav>li{
+        margin: 10px 15px;
+    }
 }

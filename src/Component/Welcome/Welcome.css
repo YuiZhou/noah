@@ -71,7 +71,6 @@ section span {
     padding: 0;
     display: table;
     width: 100%;
-    background-image: url(/img/background_h.jpg);
     background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
@@ -87,13 +86,6 @@ section span {
 }
 
 @media (max-width:768px) {
-    .welcome {
-        background-image: url(/img/background_v.jpg);
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center center;
-    }
-
     .welcome .intro-body {
         bottom: 20px;
     }

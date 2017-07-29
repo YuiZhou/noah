@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import AutoResponsive from 'autoresponsive-react';
+import { PhotoSwipe } from 'react-photoswipe';
 import './Display.css';
+import 'react-photoswipe/lib/photoswipe.css';
 
 class Display extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            bodyWidth: document.body.clientWidth
+            bodyWidth: document.body.clientWidth,
+            isOpen: false,
+            options: {
+                closeOnScroll: false
+            }
         }
+        this.handleClose = this.handleClose.bind(this);
+        this.openSwipe = this.openSwipe.bind(this);
     }
 
     getAutoResponsiveProps() {
@@ -31,11 +39,31 @@ class Display extends Component {
         }, false);
     }
 
+    handleClose() {
+        this.setState(function() {
+            return { isOpen: false };
+        });
+    }
+
+    openSwipe(index) {
+        this.setState(function() {
+            return {
+                isOpen: true,
+                options: {
+                    index: index,
+                    closeOnScroll: false,
+                    clickToCloseNonZoomable: false
+                }
+            }
+        });
+    }
 
     render() {
         const { images } = this.props;
+        const { isOpen, options } = this.state;
         const fixWidth = 235;
         return (
+            <div>
             <AutoResponsive ref="container" {...this.getAutoResponsiveProps() }>
                 {
                     images.map(function (x, i) {
@@ -43,10 +71,12 @@ class Display extends Component {
                             width: fixWidth,
                             height: fixWidth * x.h / x.w
                         }
-                        return <div className="item" style={itemStyle} key={i}><img src={process.env.PUBLIC_URL + '/portfolio/' + x.thumb} alt={x.discribe} /></div>;
+                        return <div className="item" style={itemStyle} key={i}><img src={ x.thumb} alt={x.discribe} onClick={this.openSwipe.bind(i)}/></div>;
                     }, this)
                 }
             </AutoResponsive>
+            <PhotoSwipe isOpen={isOpen} items={images} options={options} onClose={this.handleClose}/>
+            </div>
         );
     }
 }

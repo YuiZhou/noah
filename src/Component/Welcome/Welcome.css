@@ -11,6 +11,9 @@ section span {
     -moz-transform: rotate(135deg);
     transform: rotate(135deg);
     box-sizing: border-box;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
 }
 
 #arrow-0 {
@@ -68,7 +71,6 @@ section span {
     padding: 0;
     display: table;
     width: 100%;
-    text-align: center;
     background-image: url(/img/background_h.jpg);
     background-size: cover;
         background-repeat: no-repeat;
@@ -82,7 +84,6 @@ section span {
     position: absolute;
     bottom: 10px;
     width: 100%;
-    text-align: center;
 }
 
 @media (max-width:768px) {

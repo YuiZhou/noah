@@ -7,3 +7,7 @@
 .item>img:hover {
     margin-top: 0;
 }
+
+.display {
+    margin: 0 auto;
+}

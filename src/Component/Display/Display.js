@@ -8,7 +8,9 @@ class Display extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            bodyWidth: document.body.clientWidth,
+            bodyWidth: this.getBodyWidth(),
+            imageWidth: this.getImageWidth(),
+            itemMargin: 15,
             isOpen: false,
             options: {
                 closeOnScroll: false
@@ -16,16 +18,44 @@ class Display extends Component {
         }
         this.handleClose = this.handleClose.bind(this);
         this.openSwipe = this.openSwipe.bind(this);
+        this.getBodyWidth = this.getBodyWidth.bind(this);
+        this.getImageWidth = this.getImageWidth.bind(this);
+        this.getClientWidth = this.getClientWidth.bind(this);
+        this.getStyle = this.getStyle.bind(this);
+    }
+
+    getStyle() {
+        return {
+            width: this.getClientWidth()
+        }
+    }
+
+    getBodyWidth() {
+        return document.body.clientWidth;
+    }
+
+    getImageWidth() {
+        var bodyWidth = this.getBodyWidth();
+        if (bodyWidth > 768 || bodyWidth < 360) {
+            return 240;
+        }
+
+        return 165;
+    }
+
+    getClientWidth() {
+        const { bodyWidth, imageWidth, itemMargin } = this.state;
+        var itemWidth = imageWidth + itemMargin;
+        var containerWidth = bodyWidth > 768 ? bodyWidth * 0.9 : bodyWidth - 20;
+        return Math.floor(containerWidth / itemWidth) * itemWidth - itemMargin + 1;
     }
 
     getAutoResponsiveProps() {
-        const { bodyWidth } = this.state;
-        var clientWidth = bodyWidth > 768 ? bodyWidth * 0.95 : bodyWidth - 20;
         return {
-            itemMargin: 15,
-            containerWidth: clientWidth,
+            itemMargin: this.state.itemMargin,
+            containerWidth: this.getClientWidth(),
             itemClassName: 'item',
-            gridWidth: 10,
+            gridWidth: 15,
             transitionDuration: '.8',
             transitionTimingFunction: 'easeIn'
         };
@@ -61,16 +91,15 @@ class Display extends Component {
 
     render() {
         const { images } = this.props;
-        const { bodyWidth, isOpen, options } = this.state;
-        const fixWidth = bodyWidth > 768 ? 235 : 165;
+        const { imageWidth, isOpen, options } = this.state;
         return (
-            <div>
+            <div className="display" style={this.getStyle()}>
             <AutoResponsive ref="container" {...this.getAutoResponsiveProps() }>
                 {
                     images.map(function (x, i) {
                         var itemStyle = {
-                            width: fixWidth,
-                            height: fixWidth * x.h / x.w
+                            width: imageWidth,
+                            height: imageWidth * x.h / x.w
                         }
                         return <div className="item" style={itemStyle} key={i}><img src={ x.thumb } alt={x.discribe} onClick={this.openSwipe.bind(this, i)}/></div>;
                     }, this)

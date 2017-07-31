@@ -46,7 +46,7 @@ class Display extends Component {
     getClientWidth() {
         const { bodyWidth, imageWidth, itemMargin } = this.state;
         var itemWidth = imageWidth + itemMargin;
-        var containerWidth = bodyWidth > 768 ? bodyWidth * 0.9 : bodyWidth - 20;
+        var containerWidth = bodyWidth > 768 ? bodyWidth * 0.9 : bodyWidth;
         return Math.floor(containerWidth / itemWidth) * itemWidth - itemMargin + 1;
     }
 

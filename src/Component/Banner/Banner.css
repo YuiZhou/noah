@@ -1,8 +1,8 @@
 .nav {
-  display: inline-block;
-  float: none;
-  vertical-align: top;
-  text-align: center;
+    display: inline-block;
+    float: none;
+    vertical-align: top;
+    text-align: center;
 }
 
 .tagIcon {
@@ -10,8 +10,8 @@
 }
 
 .nav>li {
-  text-align: center;
-  margin: 10px 25px;
+    text-align: center;
+    margin: 10px 25px;
 }
 
 .nav>li>a {
@@ -20,6 +20,10 @@
     padding: 0;
     margin: 4px 2px;
     font-weight: bold;
+    transition:color linear 0.5s;
+    -moz-transition:color linear 0.5s; /* Firefox 4 */
+    -webkit-transition:color linear 0.5s; /* Safari and Chrome */
+    -o-transition:color linear 0.5s; /* Opera */
 }
 
 .nav>li>a:focus, .nav>li>a:hover {
@@ -31,6 +35,15 @@
     color: #d94f5c;
     background-color: transparent;
 } 
+
+.nav-pills>li {
+    border-bottom: 0 transparent;
+    border-bottom-color: #ffffff;
+    transition:border-bottom-color linear 0.5s;
+    -moz-transition:border-bottom-color linear 0.5s; /* Firefox 4 */
+    -webkit-transition:border-bottom-color linear 0.5s; /* Safari and Chrome */
+    -o-transition:border-bottom-color linear 0.5s; /* Opera */
+}
 
 .nav-pills>li.active {
     border-bottom: 2px solid;
